@@ -1,0 +1,220 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Toonverse-AI - Turn Your Imagination Into Anime</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div class="brand-icon-box">T</div>
+      <div>
+        <p class="brand-name">Toonverse-AI</p>
+        <p class="brand-credit">By Midnight Developer</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+
+    <section class="hero2">
+      <span class="hero-badge">✦ AI Anime Art Generator</span>
+      <h1>Turn Your Imagination Into<br><span class="accent">Stunning Anime Art</span></h1>
+      <p class="hero-sub">Describe your ideas, choose a style, and let our AI bring your anime dreams to life. Fast, easy and completely free.</p>
+
+      <div class="search-bar">
+        <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M17 3a2.85 2.83 0 114 4L7.5 20.5 2 22l1.5-5.5z"/></svg>
+        <input type="text" id="promptInput" placeholder="Describe your anime art idea..." />
+        <button id="goCreateBtn" class="search-bar-btn">✦ Generate →</button>
+      </div>
+
+      <div class="quick-chip-row" id="chips">
+        <span class="quick-chip active" data-style="anime style, female character">Anime girl</span>
+        <span class="quick-chip" data-style="anime style, male character">Anime boy</span>
+        <span class="quick-chip" data-style="fantasy anime scene">Fantasy</span>
+        <span class="quick-chip" data-style="epic anime scene, cinematic">Epic scene</span>
+        <span class="quick-chip" data-style="anime character portrait">Character</span>
+        <span class="quick-chip" data-style="chibi style, cute, small">Chibi</span>
+      </div>
+    </section>
+
+    <section class="feature-list-card">
+      <div class="feature-list-item">
+        <div class="feature-list-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 3l1.5 4.5L12 9l-4.5 1.5L6 15l-1.5-4.5L0 9l4.5-1.5L6 3z" transform="translate(3,2)"/><circle cx="12" cy="12" r="9"/></svg></div>
+        <div>
+          <p class="feature-list-title">High Quality Results</p>
+          <p class="feature-list-desc">Sharp & detailed images</p>
+        </div>
+      </div>
+      <div class="feature-list-item">
+        <div class="feature-list-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><circle cx="13.5" cy="6.5" r=".5"/><circle cx="17.5" cy="10.5" r=".5"/><circle cx="8.5" cy="7.5" r=".5"/><circle cx="6.5" cy="12.5" r=".5"/><path d="M12 2C6.5 2 2 6.5 2 12s4.5 10 10 10c.926 0 1.648-.746 1.648-1.688 0-.437-.18-.835-.437-1.125-.29-.289-.438-.652-.438-1.125a1.64 1.64 0 011.668-1.668h1.996c3.051 0 5.555-2.503 5.555-5.554C21.965 6.012 17.461 2 12 2z"/></svg></div>
+        <div>
+          <p class="feature-list-title">Multiple Styles</p>
+          <p class="feature-list-desc">From classic to modern</p>
+        </div>
+      </div>
+      <div class="feature-list-item">
+        <div class="feature-list-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div>
+          <p class="feature-list-title">Fast Generation</p>
+          <p class="feature-list-desc">Ready in seconds</p>
+        </div>
+      </div>
+      <div class="feature-list-item">
+        <div class="feature-list-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a3 3 0 100 6 3 3 0 000-6z"/><path d="M18 9a3 3 0 100 6 3 3 0 000-6z"/><path d="M9 12h6"/></svg></div>
+        <div>
+          <p class="feature-list-title">No Limits</p>
+          <p class="feature-list-desc">Just your imagination</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="categories-section">
+      <div class="section-header">
+        <div>
+          <h2>Explore Categories</h2>
+          <p class="section-sub">Find the perfect style for your next creation.</p>
+        </div>
+      </div>
+
+      <div class="category-grid">
+        <a href="create.html?style=anime%20style%2C%20female%20character" class="cat-card">
+          <div class="cat-avatar av-1">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="11" r="4.5"/>
+              <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+              <path d="M4 9c1-3 3.5-5 8-5s7 2 8 5"/>
+              <path d="M6 10l-1.5 6M18 10l1.5 6"/>
+            </svg>
+          </div>
+          <p class="cat-title">Anime Girl</p>
+          <p class="cat-sub">Beautiful & Stylish</p>
+          <span class="cat-arrow">→</span>
+        </a>
+        <a href="create.html?style=anime%20style%2C%20male%20character" class="cat-card">
+          <div class="cat-avatar av-2">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+              <circle cx="12" cy="11" r="4.5"/>
+              <path d="M6 20c0-3.3 2.7-6 6-6s6 2.7 6 6"/>
+              <path d="M5 9c1-4 4-6.5 7-6.5s6 2.5 7 6.5"/>
+              <path d="M8 6l-1-3M16 6l1-3"/>
+            </svg>
+          </div>
+          <p class="cat-title">Anime Boy</p>
+          <p class="cat-sub">Cool & Powerful</p>
+          <span class="cat-arrow">→</span>
+        </a>
+        <a href="create.html?style=anime%20character%20portrait" class="cat-card">
+          <div class="cat-avatar av-3">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 12s4-6 10-6 10 6 10 6-4 6-10 6-10-6-10-6z"/><circle cx="12" cy="12" r="3.2"/></svg>
+          </div>
+          <p class="cat-title">Character</p>
+          <p class="cat-sub">OC & Fanart</p>
+          <span class="cat-arrow">→</span>
+        </a>
+        <a href="create.html?style=fantasy%20anime%20scene" class="cat-card">
+          <div class="cat-avatar av-4">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M12 2l2.9 6.6 7.1.6-5.4 4.7 1.6 7-6.2-3.7-6.2 3.7 1.6-7-5.4-4.7 7.1-.6z"/></svg>
+          </div>
+          <p class="cat-title">Fantasy</p>
+          <p class="cat-sub">Magical Worlds</p>
+          <span class="cat-arrow">→</span>
+        </a>
+        <a href="create.html?style=epic%20anime%20scene%2C%20cinematic" class="cat-card">
+          <div class="cat-avatar av-5">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><path d="M2 19l6-11 4 6 3-4 7 9z"/></svg>
+          </div>
+          <p class="cat-title">Epic Scene</p>
+          <p class="cat-sub">Breathtaking Views</p>
+          <span class="cat-arrow">→</span>
+        </a>
+        <a href="create.html?style=chibi%20style%2C%20cute%2C%20small" class="cat-card">
+          <div class="cat-avatar av-6">
+            <svg width="26" height="26" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><circle cx="12" cy="12" r="8"/><circle cx="9" cy="11" r=".5" fill="currentColor"/><circle cx="15" cy="11" r=".5" fill="currentColor"/><path d="M9 15c1.2 1 2.8 1 4 0"/></svg>
+          </div>
+          <p class="cat-title">Chibi</p>
+          <p class="cat-sub">Cute & Adorable</p>
+          <span class="cat-arrow">→</span>
+        </a>
+      </div>
+    </section>
+
+    <section class="recent-section" id="recentSection" style="display:none;">
+      <div class="section-header">
+        <div>
+          <h2>Your Recent Creations</h2>
+          <p class="section-sub">Artwork you've generated on this device.</p>
+        </div>
+      </div>
+      <div class="recent-grid" id="recentGrid"></div>
+    </section>
+
+    <section class="highlight-banner">
+      <div class="highlight-item">
+        <div class="highlight-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"/></svg></div>
+        <div>
+          <p class="highlight-title">Powered by AI</p>
+          <p class="highlight-desc">Advanced models for stunning results</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></div>
+        <div>
+          <p class="highlight-title">Safe & Secure</p>
+          <p class="highlight-desc">Your creations stay on your device</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><path d="M6 9a3 3 0 100 6 3 3 0 000-6z"/><path d="M18 9a3 3 0 100 6 3 3 0 000-6z"/><path d="M9 12h6"/></svg></div>
+        <div>
+          <p class="highlight-title">Unlimited Creativity</p>
+          <p class="highlight-desc">Turn any idea into art</p>
+        </div>
+      </div>
+      <div class="highlight-item">
+        <div class="highlight-icon"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8"><rect x="6" y="2" width="12" height="20" rx="2"/><path d="M11 18h2"/></svg></div>
+        <div>
+          <p class="highlight-title">Mobile Friendly</p>
+          <p class="highlight-desc">Create from anywhere</p>
+        </div>
+      </div>
+    </section>
+
+    <p class="footer-tagline">— Turn Words Into Art —</p>
+
+  </main>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="create.html" class="nav-item nav-plus">
+      <div class="plus-circle">+</div>
+    </a>
+    <a href="history.html" class="nav-item">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <span>History</span>
+    </a>
+  </nav>
+
+  <script src="script.js"></script>
+  <script>
+    // Show recent creations from this device, if any
+    (function() {
+      const items = JSON.parse(localStorage.getItem('toonverse_history') || '[]');
+      if (items.length === 0) return;
+      const recent = items.slice().sort((a,b) => new Date(b.createdAt) - new Date(a.createdAt)).slice(0, 6);
+      document.getElementById('recentSection').style.display = 'block';
+      document.getElementById('recentGrid').innerHTML = recent.map(item => `
+        <a href="history.html" class="recent-tile">
+          <img src="${item.imageUrl}" alt="Generated anime art" />
+        </a>
+      `).join('');
+    })();
+  </script>
+</body>
+</html>
