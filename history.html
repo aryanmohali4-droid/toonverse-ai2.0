@@ -1,0 +1,191 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>History - Toonverse-AI</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="topbar">
+    <div class="brand">
+      <div>
+        <p class="brand-name">Generation History</p>
+        <p class="brand-tag">Your recently generated artworks</p>
+      </div>
+    </div>
+  </header>
+
+  <main class="page">
+    <div id="historyList" class="history-list">
+      <!-- filled by script -->
+    </div>
+
+    <div id="emptyState" class="empty-state" style="display:none;">
+      <svg width="120" height="120" viewBox="0 0 120 120" class="mascot">
+        <circle cx="60" cy="60" r="56" fill="#fff2e8"/>
+        <path d="M40 55 Q45 35 60 40 Q75 35 80 55 Q82 75 60 82 Q38 75 40 55 Z" fill="#ff7a1a"/>
+        <path d="M42 40 L36 24 L50 34 Z" fill="#ff7a1a"/>
+        <path d="M78 40 L84 24 L70 34 Z" fill="#ff7a1a"/>
+        <circle cx="52" cy="58" r="3.5" fill="#1a1a2e"/>
+        <circle cx="68" cy="58" r="3.5" fill="#1a1a2e"/>
+        <path d="M55 68 Q60 72 65 68" stroke="#1a1a2e" stroke-width="2" fill="none" stroke-linecap="round"/>
+      </svg>
+      <p class="empty-title">No creations yet</p>
+      <p class="empty-sub">Your generated artwork will appear here.</p>
+      <a href="create.html" class="generate-btn" style="display:inline-block; text-decoration:none; width:auto; padding:12px 28px; margin-top:8px;">Create Artwork</a>
+    </div>
+  </main>
+
+  <div id="imageViewer" class="image-viewer" style="display:none;">
+    <div class="viewer-backdrop"></div>
+    <div class="viewer-content">
+      <button id="viewerClose" class="viewer-close">✕</button>
+      <div class="result-tag" id="viewerCategory">Anime Girl</div>
+      <img id="viewerImage" src="" alt="Generated anime art" class="viewer-img" />
+      <p id="viewerPrompt" class="viewer-prompt"></p>
+      <p id="viewerDate" class="viewer-date"></p>
+      <div class="viewer-actions">
+        <button id="viewerDownload" class="secondary-btn">Download</button>
+        <button id="viewerRegenerate" class="generate-btn" style="margin-top:0;">Generate Again</button>
+      </div>
+    </div>
+  </div>
+
+  <nav class="bottom-nav">
+    <a href="index.html" class="nav-item">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M3 12l9-9 9 9"/><path d="M5 10v10h14V10"/></svg>
+      <span>Home</span>
+    </a>
+    <a href="create.html" class="nav-item nav-plus">
+      <div class="plus-circle">+</div>
+    </a>
+    <a href="history.html" class="nav-item active">
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="9"/><path d="M12 7v5l3 3"/></svg>
+      <span>History</span>
+    </a>
+  </nav>
+
+  <script src="script.js"></script>
+  <script>
+    function timeAgo(dateStr) {
+      const now = new Date();
+      const then = new Date(dateStr);
+      const diffMs = now - then;
+      const diffMins = Math.floor(diffMs / 60000);
+      const diffHours = Math.floor(diffMins / 60);
+      const diffDays = Math.floor(diffHours / 24);
+      if (diffMins < 1) return 'Just now';
+      if (diffMins < 60) return `${diffMins} min ago`;
+      if (diffHours < 24) return `${diffHours}h ago`;
+      if (diffDays === 1) return 'Yesterday';
+      if (diffDays < 7) return `${diffDays} days ago`;
+      return then.toLocaleDateString();
+    }
+
+    function styleLabel(style) {
+      if (!style) return 'Anime';
+      if (style.includes('female')) return 'Anime Girl';
+      if (style.includes('male')) return 'Anime Boy';
+      if (style.includes('fantasy')) return 'Fantasy';
+      if (style.includes('realistic')) return 'Realistic';
+      if (style.includes('3d')) return '3D';
+      if (style.includes('portrait')) return 'Character';
+      return 'Anime';
+    }
+
+    function getHistory() {
+      return JSON.parse(localStorage.getItem('toonverse_history') || '[]');
+    }
+
+    function renderHistory() {
+      const list = document.getElementById('historyList');
+      const empty = document.getElementById('emptyState');
+      const items = getHistory();
+
+      if (items.length === 0) {
+        empty.style.display = 'flex';
+        list.style.display = 'none';
+        return;
+      }
+
+      empty.style.display = 'none';
+      list.style.display = 'flex';
+
+      const sorted = items.slice().sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt));
+
+      list.innerHTML = sorted.map(item => `
+        <div class="history-row-card" data-id="${item.generationId}">
+          <div class="history-row-img-wrap">
+            <img src="${item.imageUrl}" alt="Generated anime art" class="history-row-thumb" />
+            <span class="history-row-tag">${styleLabel(item.category)}</span>
+          </div>
+          <div class="history-row-info">
+            <p class="history-row-prompt">${item.prompt}</p>
+            <p class="history-row-date">${timeAgo(item.createdAt)}</p>
+            <div class="history-row-actions">
+              <button class="row-btn view-btn" data-id="${item.generationId}">View</button>
+              <button class="row-btn regen-btn" data-id="${item.generationId}">Generate Again</button>
+            </div>
+          </div>
+        </div>
+      `).join('');
+
+      document.querySelectorAll('.view-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const item = items.find(i => i.generationId === btn.dataset.id);
+          if (item) openViewer(item);
+        });
+      });
+
+      document.querySelectorAll('.regen-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const item = items.find(i => i.generationId === btn.dataset.id);
+          if (item) goRegenerate(item);
+        });
+      });
+
+      document.querySelectorAll('.history-row-card').forEach(card => {
+        card.addEventListener('click', () => {
+          const item = items.find(i => i.generationId === card.dataset.id);
+          if (item) openViewer(item);
+        });
+      });
+    }
+
+    function openViewer(item) {
+      document.getElementById('viewerImage').src = item.imageUrl;
+      document.getElementById('viewerCategory').textContent = styleLabel(item.category);
+      document.getElementById('viewerPrompt').textContent = item.prompt;
+      document.getElementById('viewerDate').textContent = timeAgo(item.createdAt);
+      document.getElementById('imageViewer').style.display = 'flex';
+
+      document.getElementById('viewerDownload').onclick = () => {
+        const a = document.createElement('a');
+        a.href = item.imageUrl;
+        a.download = 'toonverse-art.png';
+        a.target = '_blank';
+        a.click();
+      };
+
+      document.getElementById('viewerRegenerate').onclick = () => goRegenerate(item);
+    }
+
+    function goRegenerate(item) {
+      window.location.href = 'create.html?prompt=' + encodeURIComponent(item.prompt) + '&style=' + encodeURIComponent(item.category || '');
+    }
+
+    document.getElementById('viewerClose').addEventListener('click', () => {
+      document.getElementById('imageViewer').style.display = 'none';
+    });
+    document.querySelector('.viewer-backdrop').addEventListener('click', () => {
+      document.getElementById('imageViewer').style.display = 'none';
+    });
+
+    renderHistory();
+  </script>
+</body>
+</html>
